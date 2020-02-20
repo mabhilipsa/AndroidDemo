@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager=supportFragmentManager
         itemFragment=ItemFragment.newInstance()
         itemFragment?.let {
-            fragmentManager.beginTransaction().addToBackStack(ItemFragment.javaClass.simpleName).add(R.id.fragment_container,it,ItemFragment.javaClass.simpleName).commit()
+            fragmentManager.beginTransaction().add(R.id.fragment_container,it,ItemFragment.javaClass.simpleName).commit()
+
         }
 
         itemViewModel = ViewModelProviders.of(this)[ItemViewModel::class.java]

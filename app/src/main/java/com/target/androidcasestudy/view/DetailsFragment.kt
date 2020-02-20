@@ -12,9 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.target.androidcasestudy.R
 import com.target.androidcasestudy.model.Item
+import com.target.androidcasestudy.network.PicassoDownloader
 import com.target.androidcasestudy.viewmodel.ItemViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_item.*
+import kotlinx.android.synthetic.main.item_list.view.*
 
 class DetailsFragment : Fragment() {
 
@@ -51,6 +53,11 @@ class DetailsFragment : Fragment() {
                 item_name.text=item.title
                 item_price.text=item.price
                 item_sale_price.text="Reg : "+item.salePrice
+
+                context?.let { it1 ->
+                    PicassoDownloader.getPicasso(it1).load(item.image)
+                        .placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).fit().centerInside().into(item_image)
+                }
 
             })
         }
